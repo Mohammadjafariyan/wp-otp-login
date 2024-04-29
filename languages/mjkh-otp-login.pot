@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-29T10:51:29+02:00\n"
+"POT-Creation-Date: 2024-04-29T14:15:04+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: mjkh-otp\n"
@@ -44,11 +44,18 @@ msgid "Email or Mobile"
 msgstr ""
 
 #: build/render.php:26
+#: build/render.php:27
 #: src/render.php:26
+#: src/render.php:27
 #: build/index.js:85
 #: src/edit.js:71
 #: build/index.js:71
 msgid "Please enter your Mobile Or Email"
+msgstr ""
+
+#: build/render.php:31
+#: src/render.php:31
+msgid "Login Send Code"
 msgstr ""
 
 #: build/render.php:40
@@ -57,8 +64,15 @@ msgid "Please Enter code :"
 msgstr ""
 
 #: build/render.php:41
+#: build/render.php:42
 #: src/render.php:41
+#: src/render.php:42
 msgid "Please Enter code Enter the code we sent to Your Mobile/Email"
+msgstr ""
+
+#: build/render.php:46
+#: src/render.php:46
+msgid "Login - Confirm"
 msgstr ""
 
 #: build/render.php:61

@@ -4,17 +4,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Otp login 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mjkh-otp-login\n"
+"POT-Creation-Date: 2024-04-29T14:15:04+02:00\n"
+"PO-Revision-Date: 2024-04-29 16:49+0430\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-29T10:51:29+02:00\n"
-"PO-Revision-Date: 2024-04-29 13:27+0430\n"
 "X-Generator: Poedit 2.2\n"
 "X-Domain: mjkh-otp\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
-"Language: fa_IR\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: mjkh-otp-login.php\n"
+"X-Poedit-SearchPath-1: src/render.php\n"
+"X-Poedit-SearchPath-2: src/view.js\n"
 
 #. Plugin Name of the plugin
 msgid "Otp login"
@@ -34,25 +38,33 @@ msgstr ""
 
 #: build/render.php:18 src/render.php:18
 msgid "Login or Register"
-msgstr "ورود یا ثبت نام"
+msgstr "ورود یا ثبت نام با رمز یکبار مصرف"
 
 #: build/render.php:25 src/render.php:25 build/index.js:84 src/edit.js:70
 #: build/index.js:70
 msgid "Email or Mobile"
 msgstr "ایمیل یا موبایل"
 
-#: build/render.php:26 src/render.php:26 build/index.js:85 src/edit.js:71
-#: build/index.js:71
+#: build/render.php:26 build/render.php:27 src/render.php:26 src/render.php:27
+#: build/index.js:85 src/edit.js:71 build/index.js:71
 msgid "Please enter your Mobile Or Email"
 msgstr "لطفا موبایل یا ایمیل خود را وارد کنید"
+
+#: build/render.php:31 src/render.php:31
+msgid "Login Send Code"
+msgstr "ورود - ارسال کد یکبار مصرف"
 
 #: build/render.php:40 src/render.php:40
 msgid "Please Enter code :"
 msgstr "لطفا کد را وارد کنید:"
 
-#: build/render.php:41 src/render.php:41
+#: build/render.php:41 build/render.php:42 src/render.php:41 src/render.php:42
 msgid "Please Enter code Enter the code we sent to Your Mobile/Email"
 msgstr "لطفا کد را وارد کنید کدی را که به موبایل/ایمیل خود ارسال کرده ایم وارد کنید"
+
+#: build/render.php:46 src/render.php:46
+msgid "Login - Confirm"
+msgstr "ورود"
 
 #: build/render.php:61 src/render.php:61
 msgid "Already Logged in "
@@ -76,7 +88,7 @@ msgstr "کد نامعتبر است"
 
 #: mjkh-otp-login.php:288
 msgid "The code = "
-msgstr "کد ="
+msgstr "کد "
 
 #: mjkh-otp-login.php:337 mjkh-otp-login.php:347
 msgid "Otp Sent successfuly"

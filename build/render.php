@@ -24,11 +24,11 @@
 					<br>
 					<label for="<?php echo 'mjkh-otp'; ?>-emailOrMobile"> <?php _e('Email or Mobile', 'mjkh-otp'); ?> </label><br>
 					<input style="width: 100%;" required id="<?php echo 'mjkh-otp'; ?>-emailOrMobile" type="text" name="emailOrMobile" value="" placeholder="<?php _e('Please enter your Mobile Or Email', 'mjkh-otp'); ?>" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" /><br>
-					<small>Please enter your Mobile Or Email</small>
+					<small><?php echo __('Please enter your Mobile Or Email', 'mjkh-otp') ?></small>
 				</div>
 
 				<br />
-				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Login - Send Code"></p>
+				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __('Login Send Code', 'mjkh-otp') ?>"></p>
 			</form>
 
 			<form style="display: none" action="<?php echo esc_url('/wp/v2/users/login'); ?>" method="post" id="mjkh-otp-login">
@@ -39,11 +39,11 @@
 					<br>
 					<label for="<?php echo 'mjkh-otp'; ?>-emailOrMobile"> <?php _e('Please Enter code :', 'mjkh-otp'); ?> </label><br>
 					<input style="width: 100%;" required id="<?php echo 'mjkh-otp'; ?>-otp" type="text" name="otp" value="" placeholder="<?php _e('Please Enter code Enter the code we sent to Your Mobile/Email', 'mjkh-otp'); ?>" /><br>
-					<small id="otp-message">Please Enter code Enter the code we sent to Your Mobile/Email</small>
+					<small id="otp-message"><?php echo __('Please Enter code Enter the code we sent to Your Mobile/Email', 'mjkh-otp') ?></small>
 				</div>
 				<br />
 
-				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Login - Confirm"></p>
+				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __('Login - Confirm', 'mjkh-otp') ?>"></p>
 			</form>
 			<br /><br />
 			<div id="nds_form_feedback"></div>
