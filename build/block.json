@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mjkh-otp-login/mjkh-otp-login",
+  "version": "0.1.0",
+  "title": "Otp login ",
+  "category": "embed",
+  "icon": "smiley",
+  "description": "Email and Mobile Otp Login Plugin",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "mjkh-otp-login",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:../build-assets/index.css",
+    "file:./style-index.css"
+  ],
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

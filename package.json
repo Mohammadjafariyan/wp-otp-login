@@ -1,0 +1,27 @@
+{
+	"name": "mjkh-otp-login",
+	"version": "0.1.0",
+	"description": "Email and Mobile Otp Login Plugin",
+	"author": "Mohammad Jafariyan Khosrowshahi",
+	"license": "GPL-2.0-or-later",
+	"homepage": "bulus.ir",
+	"main": "build/index.js",
+	"scripts": {
+		"tailwind:build": "npx tailwindcss -i ./src/input.css -o ./build-assets/index.css",
+		"tailwind:watch": "npm run tailwind:build -- --watch",
+		"build": "wp-scripts build --webpack-copy-php && npm run tailwind:build",
+		"start": "wp-scripts start --webpack-copy-php & npm run tailwind:watch",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.7.0",
+		"tailwindcss": "^3.4.3"
+	},
+	"dependencies": {
+		"@wordpress/components": "^27.4.0"
+	}
+}
