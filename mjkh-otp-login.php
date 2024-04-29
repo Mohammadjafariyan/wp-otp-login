@@ -442,7 +442,11 @@ function mjkh_send_email($code, $email)
 
 	$desc2 = __(' just ignore this email', 'mjkh-otp');
 
-	$site_icon_url = esc_url(get_site_icon_url());
+	$custom_logo_id = get_theme_mod('custom_logo');
+	$image = wp_get_attachment_image_src($custom_logo_id, 'full');
+
+
+	$site_icon_url = $image[0];
 
 	$message = __('Before you sign in, we need to verify your
                               identity. Enter the following

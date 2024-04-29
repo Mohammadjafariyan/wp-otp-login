@@ -14,7 +14,6 @@
 		<div class="nds_add_user_meta_ajax_form">
 
 
-
 			<!-- <h3><?php echo __('Login or Register', 'mjkh-otp') ?></h3> -->
 			<form action="<?php echo esc_url('/wp/v2/users/sendotp'); ?>" method="post" id="mjkh-otp-request-code">
 
