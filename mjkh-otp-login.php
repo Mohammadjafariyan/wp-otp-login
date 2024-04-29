@@ -651,7 +651,9 @@ function mjkh_send_email($code, $email)
 EOT;
 
 
-	wp_mail($email, __("Verify your identity", "mjkh-otp"), $html_content);
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+
+	wp_mail($email, __("Verify your identity", "mjkh-otp"), $html_content, $headers);
 	return $html_content;
 
 }
