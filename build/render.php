@@ -15,7 +15,7 @@
 
 
 
-			<h3><?php echo __('Login or Register', 'mjkh-otp') ?></h3>
+			<!-- <h3><?php echo __('Login or Register', 'mjkh-otp') ?></h3> -->
 			<form action="<?php echo esc_url('/wp/v2/users/sendotp'); ?>" method="post" id="mjkh-otp-request-code">
 
 				<input type="hidden" name="action" value="mjkh_request_code_post">
