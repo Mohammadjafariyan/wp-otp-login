@@ -22,12 +22,10 @@
 				<input type="hidden" name="nds_add_user_meta_nonce" value="<?php echo $nds_add_meta_nonce ?>" />
 				<div>
 					<br>
-					<label for="<?php echo 'mjkh-otp'; ?>-emailOrMobile"> <?php _e('Email or Mobile', 'mjkh-otp'); ?> </label><br>
-					<input style="width: 100%;" required id="<?php echo 'mjkh-otp'; ?>-emailOrMobile" type="text" name="emailOrMobile" value="" placeholder="<?php _e('Please enter your Mobile Or Email', 'mjkh-otp'); ?>" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" /><br>
 					<small><?php echo __('Please enter your Mobile Or Email', 'mjkh-otp') ?></small>
+					<input style="width: 100%;" required id="<?php echo 'mjkh-otp'; ?>-emailOrMobile" type="text" name="emailOrMobile" value="" placeholder="<?php _e('Please enter your Mobile Or Email', 'mjkh-otp'); ?>" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" /><br>
 				</div>
 
-				<br />
 				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __('Login Send Code', 'mjkh-otp') ?>"></p>
 			</form>
 
