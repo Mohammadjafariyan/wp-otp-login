@@ -618,7 +618,7 @@ function mjkh_send_email($code, $email)
             You're receiving this email because of your account on
             <a
               rel="noopener noreferrer"
-              href="https://$site_url"
+              href="$site_url"
               style="color: #3777b0; text-decoration: none"
               target="_blank"
               >$site_url</a
@@ -626,7 +626,7 @@ function mjkh_send_email($code, $email)
 
             ·
             <a
-              href="https://$site_url/help"
+              href="$site_url/help"
               rel="noopener noreferrer"
               style="color: #3777b0; text-decoration: none"
               target="_blank"
