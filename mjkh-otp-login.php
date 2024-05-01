@@ -386,11 +386,11 @@ add_action('rest_api_init', 'mjkh_register_send_otp_endpoint');
 function mjkh_authenticate_user($user)
 {
 	//wp_clear_auth_cookie();
-	//clean_user_cache($user->ID);
+	clean_user_cache($user->ID);
 	wp_clear_auth_cookie();
 	wp_set_current_user($user->ID);
 	wp_set_auth_cookie($user->ID, true, false);
-	//update_user_caches($user);
+	update_user_caches($user);
 }
 
 function create_user_if_not_exists($username, $email, $password, $role = 'customer')
@@ -406,7 +406,7 @@ function create_user_if_not_exists($username, $email, $password, $role = 'custom
 	}
 
 	// Create the user with the provided details
-	$user_id = wp_create_user($username, $password, $email);
+	$user_id = wp_create_user(($username !== null) ? $username : $email , $password, $email);
 
 	if (is_wp_error($user_id)) {
 		return "Error creating user: " . $user_id->get_error_message();
