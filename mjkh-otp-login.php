@@ -406,7 +406,7 @@ function create_user_if_not_exists($username, $email, $password, $role = 'custom
 	}
 
 
-	$usName= ($username != null) ? $username : $email;
+	$usName= mjkh_generate_unique_username(($username != null) ? $username : $email);
 	// Create the user with the provided details
 	$user_id = wp_create_user($usName, $password, $email);
 
@@ -420,7 +420,32 @@ function create_user_if_not_exists($username, $email, $password, $role = 'custom
 	$user = new WP_User($user_id);
 	$user->set_role($role);
 
-	return "User '$username' created successfully.";
+
+	return get_user_by('id', $user_id);
+
+
+}
+
+function mjkh_generate_unique_username($username)
+{
+
+	$username = sanitize_title($username);
+
+	static $i;
+	if (null === $i) {
+		$i = 1;
+	} else {
+		$i++;
+	}
+	if (!username_exists($username)) {
+		return $username;
+	}
+	$new_username = sprintf('%s-%s', $username, $i);
+	if (!username_exists($new_username)) {
+		return $new_username;
+	} else {
+		return call_user_func(__FUNCTION__, $username);
+	}
 }
 
 
