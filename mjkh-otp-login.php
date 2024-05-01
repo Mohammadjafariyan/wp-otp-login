@@ -372,7 +372,7 @@ add_action('rest_api_init', 'mjkh_register_send_otp_endpoint');
 
 function mjkh_authenticate_user($user)
 {
-	wp_clear_auth_cookie();
+	//wp_clear_auth_cookie();
 	wp_set_auth_cookie($user->ID);
 	wp_set_current_user($user->ID);
 }
