@@ -226,10 +226,23 @@ function mjkh_login_endpoint($request)
 	// If needed, create a user session or perform other actions.
 	// You can also return additional information or a JWT token if integrating with other services.
 
-	return array(
-		'success' => true,
-		'message' => 'Login successful',
-	);
+	if (defined('WP_DEBUG') && WP_DEBUG) {
+
+
+		return array(
+			'success' => true,
+			'message' => 'Login successful',
+			'userId'=> $user->ID,
+			'user'=> $user
+		);
+
+	}else{
+
+		return array(
+			'success' => true,
+			'message' => 'Login successful',
+		);
+	}
 }
 
 function mjkh_register_login_endpoint()
