@@ -1,0 +1,381 @@
+/*
+Theme Name: GosTaran Themes
+Description: Adds support for languages written in a Right To Left (RTL) direction.
+*/
+@font-face{
+	font-family: 'iranyekan';
+	src: url('fonts/iranyekanwebregular.eot');
+	src: url('fonts/iranyekanwebregular.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+	url('fonts/iranyekanwebregular.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+	url('fonts/iranyekanwebregular.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+	url('fonts/iranyekanwebregular.ttf') format('truetype');
+}
+@font-face {
+font-family: "aviny";
+src: url('fonts/aviny.ttf') format('truetype');
+}
+@font-face {
+	  font-family: "Lalezar";
+	  src: url("fonts/LalezarRegular.ttf");
+}
+
+body {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.service__title {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.road__item-title {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.cases__item-title {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.btn {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.counter__item-title {
+    font-family: iranyekan !important;
+}
+.counter__item-value {
+    font-family: iranyekan !important;
+}
+.facts__title {
+    font-family: iranyekan !important;
+}
+.token__info-list li {
+    font-family: iranyekan !important;
+}
+.token__info-list li span {
+    font-family: iranyekan !important;
+}
+.f-raleway {
+font-family: lalezar !important;
+}
+.doc__title {
+    font-family: iranyekan !important;
+}
+.chart__title {
+    font-family: iranyekan !important;
+}
+.chart__text {
+    font-family: iranyekan !important;
+}
+.wpb-js-composer .vc_general.vc_tta.vc_tta-accordion.vc_tta-color-cryptoland_vc_tta-color-transparent .vc_tta-panel-title > a {
+    font-family: iranyekan !important;
+}
+.owl-carousel .owl-stage-outer {
+    direction: ltr;
+}
+.f-catamaran {
+    font-family: iranyekan !important;
+}
+.promo p {
+    text-align: right !important;
+}
+.timer__titles {
+    font-family: iranyekan !important;
+    letter-spacing: 0px !important;
+    right: 0 !important;
+direction: ltr;
+}
+h1 span {
+    font-family: lalezar !important;
+}
+.promo__btns-wrap .btn {
+    margin-left: 17px !important;
+}
+body {
+    text-align: right !important;
+}
+.economy ul li::before {
+    right: 0 !important;
+}
+.economy ul li {
+    padding-right: 22px !important;
+}
+.style-tire {
+    padding-right: 50px !important;
+}
+.ch_142849 {
+    letter-spacing: 0 !important;
+}
+.cases__item {
+    text-align: right !important;
+}
+.cases__item-icon {
+    margin-left: 30px !important;
+}
+.counter__item-2 {
+    text-align: right !important;
+}
+.counter__item-4 {
+    text-align: right !important;
+}
+.counter__item-1 {
+    text-align: right !important;
+}
+.counter__item-3 {
+    text-align: right !important;
+}
+.btn-wrapper.btn--left {
+    float: right !important;
+}
+.chart__legend span {
+    margin-left: 20px !important;
+}
+.team-member__content {
+    padding-right: 22px !important;
+}
+.team-member__social li {
+    margin-left: 5px !important;
+}
+.news-carousel__item-subtitle {
+    font-family: iranyekan !important;
+}
+.news-carousel__item-data {
+    font-family: iranyekan !important;
+}
+.news-carousel .owl-dot {
+    margin-left: 10px !important;
+}
+.form {
+    direction: rtl;
+}
+.social-list__item {
+    margin-left: 10px !important;
+}
+.flip-clock-wrapper ul li a div {
+    font-family: iranyekan !important;
+}
+.wpcf7 button, .wpcf7 input, .wpcf7 select, .wpcf7 textarea {
+    font-family: iranyekan !important;
+}
+.title--big {
+    font-family: lalezar !important;
+}
+.promo__subtitle {
+    font-family: iranyekan !important;
+}
+.service__btn {
+    letter-spacing: 0 !important;
+    font-family: iranyekan !important;
+}
+.ico__bar-max-value {
+    font-family: iranyekan !important;
+}
+.offset-lg-6 {
+    margin-right: 50% !important;
+}
+.token__desc-title {
+    font-family: iranyekan !important;
+}
+.subtitle {
+    font-family: iranyekan !important;
+}
+.doc__name {
+    font-family: iranyekan !important;
+}
+.advisor__name {
+    font-family: iranyekan !important;
+}
+.team-member__name {
+    font-family: iranyekan !important;
+}
+.ico__subtitle {
+    font-family: iranyekan !important;
+}
+.ico__text {
+    font-family: iranyekan !important;
+}
+.ico__btn {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.ico__title {
+    font-family: iranyekan !important;
+}
+.wpb_single_image.vc_align_left {
+    text-align: right !important;
+}
+.data__num-value {
+    font-family: iranyekan !important;
+    margin-right: 0 !important;
+}
+.data__num-name {
+    font-family: iranyekan !important;
+}
+.data__num-row p {
+    font-family: iranyekan !important;
+}
+.wpb-js-composer .vc_general.vc_tta.vc_tta-accordion.vc_tta-color-cryptoland_vc_tta-color-purple .vc_tta-panel-title > a {
+    font-family: iranyekan !important;
+}
+.advisor__title {
+    font-family: iranyekan !important;
+}
+.platform {
+    direction: ltr;
+}
+.app {
+    direction: ltr;
+}
+.service__title {
+    text-align: right !important;
+}
+.step__num {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.step__title {
+    font-family: iranyekan !important;
+}
+.roadmap__title {
+    font-family: iranyekan !important;
+}
+.roadmap__data {
+    font-family: iranyekan !important;
+}
+.prices__table-cell:first-child {
+    font-family: iranyekan !important;
+}
+.chart__bg {
+    font-family: iranyekan !important;
+}
+body.wpb-js-composer .vc_general.vc_tta.vc_tta-accordion.vc_tta-color-cryptoland_vc_tta-color-blue .vc_tta-panel-title > a {
+    font-family: iranyekan !important;
+}
+.new__title {
+    font-family: iranyekan !important;
+}
+#hero .first-screen h1 {
+    font-family: lalezar !important;
+}
+.time_circles > div > span {
+    font-family: iranyekan !important;
+}
+.services__item-title {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.roadmap {
+    direction: ltr;
+}
+.roadmap__item-title {
+    font-family: iranyekan !important;
+}
+.process__steps {
+    direction: ltr;
+}
+.wpb-js-composer .vc_general.vc_tta.vc_tta-accordion.vc_tta-color-cryptoland_vc_tta-color-white .vc_tta-panel-title > a {
+    font-family: iranyekan !important;
+}
+.services__item-title {
+    font-family: iranyekan !important;
+    letter-spacing: 0 !important;
+}
+.first-screen .progress-bar__line p {
+    font-family: iranyekan !important;
+}
+.c-blog-3-info-meta-item {
+    float: right !important;
+}
+.__title {
+    font-family: lalezar !important;
+}
+.__subtitle i {
+    font-family: iranyekan !important;
+}
+.social-list {
+    list-style: none;
+}
+.app__dowload-links {
+    direction: rtl;
+}
+.c-comments-1-user {
+    text-align: right !important;
+}
+.c-comments-1-date {
+    text-align: right !important;
+}
+.commentlist p {
+    text-align: right !important;
+}
+.c-comments-1-reply {
+    text-align: right !important;
+}
+#reply-title {
+    text-align: right !important;
+}
+.infoblock__item p {
+    font-family: iranyekan !important;
+}
+.process-item__title {
+    font-family: iranyekan !important;
+}
+.process-item__arrow img {
+    transform: rotate(185deg);
+}
+.team-member__content {
+    text-align: right !important;
+}
+blockquote p {
+    text-align: right !important;
+}
+.table > thead > tr > th {
+    text-align: right !important;
+}
+th {
+    text-align: right !important;
+}
+#calendar_wrap table thead th, #calendar_wrap table tbody td, table tr td {
+    text-align: right !important;
+}
+b, strong {
+    font-family: iranyekan !important;
+}
+pre {
+    font-family: iranyekan !important;
+}
+.fixed-menu .fixed-menu__content, .mob-menu__item {
+    text-align: right !important;
+}
+.timer {
+    direction: ltr;
+}
+.advisor__content {
+    text-align: right;
+}
+.advisor__title {
+    text-align: right;
+}
+.home1 h4 {
+    font-family: iranyekan !important;
+}
+.home1 h2 {
+    font-family: lalezar !important;
+}
+.process__step-title {
+    font-family: lalezar !important;
+}
+.news-carousel__item-title {
+    font-family: iranyekan !important;
+}
+.f-roboto {
+    font-family: iranyekan !important;
+}
+.f-roboto {
+    font-family: iranyekan !important;
+}
+.ion-android-arrow-forward::before {
+    transform: rotate(-180deg);
+}

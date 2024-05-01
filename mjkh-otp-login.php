@@ -661,3 +661,25 @@ EOT;
 	return $html_content;
 
 }
+
+
+function mjkh_custom_font_enqueue() {
+	// Path to the font file
+	wp_enqueue_style('iranyekanwebregular-font', plugins_url('fonts/iranyekanwebregular.eot', __FILE__));
+	wp_enqueue_style('iranyekanwebregular-font', plugins_url('fonts/iranyekanwebregular.eot', __FILE__));
+	wp_enqueue_style('iranyekanwebregular-font', plugins_url('fonts/iranyekanwebregular.woff2', __FILE__));
+	wp_enqueue_style('iranyekanwebregular-font', plugins_url('fonts/iranyekanwebregular.woff', __FILE__));
+	wp_enqueue_style('iranyekanwebregular-font', plugins_url('fonts/iranyekanwebregular.ttf', __FILE__));
+	wp_enqueue_style('aviny-font', plugins_url('fonts/aviny.ttf', __FILE__));
+	wp_enqueue_style('LalezarRegular-font', plugins_url('fonts/LalezarRegular.ttf', __FILE__));
+
+
+	$css_url = plugins_url('rtl.css', __FILE__);
+	wp_enqueue_style('mjkh-rtl-css', $css_url);
+
+}
+
+
+add_action('wp_enqueue_scripts', 'mjkh_custom_font_enqueue');
+
+
