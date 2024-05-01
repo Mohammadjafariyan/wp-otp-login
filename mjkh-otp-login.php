@@ -406,7 +406,7 @@ function create_user_if_not_exists($username, $email, $password, $role = 'custom
 	}
 
 
-	$usName= ($username !== null) ? $username : $email;
+	$usName= ($username != null) ? $username : $email;
 	// Create the user with the provided details
 	$user_id = wp_create_user($usName, $password, $email);
 
