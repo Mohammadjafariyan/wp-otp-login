@@ -51,15 +51,19 @@
 
 <?php } else {
 
-?>
-
-
-	<h3><?php echo __("Already Logged in ", "mjkh-otp")  ?></h3>
+/*
+<h3><?php echo __("Already Logged in ", "mjkh-otp")  ?></h3>
 	<br />
 	<a href="<?php echo site_url()  ?>/dashboard"><?php echo __("Access Dashboard", "mjkh-otp")  ?></a>
 
 	<script>
 			//window.location.href = '<?php echo site_url()  ?>/dashboard'
 	</script>
+
+*/
+?>
+
+
+
 
 <?php  } ?>
