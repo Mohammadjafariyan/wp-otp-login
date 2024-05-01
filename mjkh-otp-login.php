@@ -285,7 +285,7 @@ function mjkh_otp_request_code_endpoint($request)
 
 			return new WP_Error(
 				'invalid_credentials',
-				__('The code = '. $codeSent.' has already been sent and it is still valid for 2 minutes ', "mjkh-otp"),
+				__('The code has already been sent and it is still valid for 2 minutes ', "mjkh-otp"),
 				array('status' => 401)
 			);
 		}
@@ -429,6 +429,10 @@ function mjkh_send_sms($code, $mobile)
 	$response = $sms_client->SendSMS($parameters)->SendSMSResult;
 
 	return $parameters['pnlno'] .' =>' .$response;
+
+
+
+
 }
 
 function mjkh_send_email($code, $email)
