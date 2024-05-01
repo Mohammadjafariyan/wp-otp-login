@@ -405,12 +405,16 @@ function create_user_if_not_exists($username, $email, $password, $role = 'custom
 		return get_user_by_email($email);
 	}
 
+
+	$usName= ($username !== null) ? $username : $email;
 	// Create the user with the provided details
-	$user_id = wp_create_user(($username !== null) ? $username : $email , $password, $email);
+	$user_id = wp_create_user($usName, $password, $email);
 
 	if (is_wp_error($user_id)) {
-		return "Error creating user: " . $user_id->get_error_message();
+		return "Error creating user: " . $user_id->get_error_message() . ' ' . 'username:' . $usName
+			. ' ' . 'email:' . $email;
 	}
+
 
 	// Set the user's role
 	$user = new WP_User($user_id);
