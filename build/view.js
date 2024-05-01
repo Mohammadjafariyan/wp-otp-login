@@ -215,8 +215,7 @@ const fetchLogin = async () => {
       console.log('Login successful');
       jQuery('#mjkh-otp-login').html('<p>' + response.message + '</p>');
       isLoginSuccessful = true;
-
-      //window.location.reload()
+      window.location.reload();
     } else {
       error = response.message || 'Login failed';
     }

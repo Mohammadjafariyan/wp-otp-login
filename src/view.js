@@ -130,7 +130,7 @@ const fetchLogin = async () => {
 
 				isLoginSuccessful = true
 
-				//window.location.reload()
+				window.location.reload()
 			} else {
 				error = response.message || 'Login failed'
 			}
