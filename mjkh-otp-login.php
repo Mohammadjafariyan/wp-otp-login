@@ -256,6 +256,9 @@ function mjkh_register_login_endpoint()
 			'permission_callback' => '__return_true', // Be cautious with permissions
 		)
 	);
+
+
+
 }
 
 add_action('rest_api_init', 'mjkh_register_login_endpoint');
@@ -732,3 +735,37 @@ function mjkh_custom_font_enqueue() {
 add_action('wp_enqueue_scripts', 'mjkh_custom_font_enqueue');
 
 
+/*----------------------------------------------------------------------------*/
+
+
+function mjkh_verify_endpoint($request)
+{
+	// Retrieve the 'key' parameter from the request
+	$key = $request->get_param('key');
+
+	// Dummy logic for verification
+	return new WP_REST_Response(array('key' => $key), 200); // HTTP 200: OK
+
+
+}
+
+function mjkh_verify_endpoint_register()
+{
+
+	register_rest_route('api/v1', '/verify/', array(
+		'methods'  => 'GET', // Accept only GET requests
+		'callback' => 'mjkh_verify_endpoint', // Function to handle the request
+		'args'     => array( // Define the expected arguments
+			'key' => array(
+				'required' => true, // Key is required
+				'type'     => 'string', // Expected data type
+				'validate_callback' => function ($param) {
+					// Optional: Validate the parameter
+					return is_string($param);
+				}
+			)
+		),
+	));
+}
+
+add_action('rest_api_init', 'mjkh_verify_endpoint_register');

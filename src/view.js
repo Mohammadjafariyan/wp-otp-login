@@ -43,7 +43,41 @@ const isMobile = value => {
 	const isMobileRegex = /^0((?:90|91|92|93|99)[0-9]{8})$/
 	return isMobileRegex.test(value)
 }
+
+var totalSeconds = 0;
+
+function setTime() {
+  ++totalSeconds;
+  $('#mjkh_seconds').text(pad(totalSeconds % 60));
+	$('#mjkh_minutes').text(pad(parseInt(totalSeconds / 60)));
+
+	if (totalSeconds / 60 >= 2) {
+		clearInterval(setTime);
+		totalSeconds = 0;
+
+$('#mjkh_timeout').hide()
+$('#mjkh_resend').show()
+
+
+	}
+}
+
+function pad(val) {
+	var valString = val + "";
+	if (valString.length < 2) {
+		return "0" + valString;
+	} else {
+		return valString;
+	}
+}
+
 const fetchRequestOtp = async callback => {
+
+	console.log('76')
+if (totalSeconds != 0) {
+		return;
+	}
+
 	apiFetch({
 		path: '/wp/v2/users/sendotp', // This would require a custom REST API endpoint or AJAX handler
 		method: 'POST',
@@ -74,6 +108,14 @@ const fetchRequestOtp = async callback => {
 							response.sms +
 							'<br/>'
 					)
+
+
+					console.log('112');
+				$('#mjkh_resend').hide()
+				$('#mjkh_timeout').show();
+
+					setInterval(setTime, 1000)
+
 				} else {
 					jQuery(' #nds_form_feedback ').html('<p>' + response.message + '</p>')
 				}

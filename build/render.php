@@ -39,6 +39,11 @@
 				</div>
 				<br />
 
+
+				<div id="mjkh_timeout" style="display: none;"><label id="mjkh_minutes">00</label>:<label id="mjkh_seconds">00</label></div>
+				<div id="mjkh_resend" style="display: none;"><a href="#" onclick="fetchRequestOtp()"> <?php echo __('ارسال مجدد رمز یکبار مصرف', 'mjkh-otp') ?> </a></div>
+
+
 				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __('Login - Confirm', 'mjkh-otp') ?>"></p>
 			</form>
 			<br /><br />
@@ -51,7 +56,7 @@
 
 <?php } else {
 
-/*
+		/*
 <h3><?php echo __("Already Logged in ", "mjkh-otp")  ?></h3>
 	<br />
 	<a href="<?php echo site_url()  ?>/dashboard"><?php echo __("Access Dashboard", "mjkh-otp")  ?></a>
