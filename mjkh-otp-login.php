@@ -744,7 +744,7 @@ function mjkh_verify_endpoint($request)
 	$key = $request->get_param('key');
 
 	// Dummy logic for verification
-	return new WP_REST_Response(array('key' => $key), 200); // HTTP 200: OK
+	return new WP_REST_Response(array('key' => $key,'message'=>'اشتراک باقیمانده : 54 هفته'), 200); // HTTP 200: OK
 
 
 }
