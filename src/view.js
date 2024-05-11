@@ -20,48 +20,63 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
 import apiFetch from '@wordpress/api-fetch'
-import { useState } from 'react'
-import { __ } from '@wordpress/i18n'
+import {useState} from 'react'
+import {__} from '@wordpress/i18n'
 
-/* eslint-disable no-console */
-
-console.log('Hello World! (from mjkh-otp-login-mjkh-otp-login block)')
-/* eslint-enable no-console */
+/*
+* description:
+* step 1 : there are two forms , request otp , login
+* bind everything
+* step 2 : fill text request otp - requestOtpApiCall
+* step 3 : start timer - setTime
+* step 4 : resend code - requestCodeEventListener
+* step 5 : restart timer - startRestartTimer
+* step 6 : fill otp and login - verifyOtpAndLoginApiCall
+*
+* */
 
 let emailOrMobile
 let otp
-let isOtpSent
-let isLoginSuccessful
 let error
 
+const CONFIG_totalSeconds = 150;
+var totalSeconds = CONFIG_totalSeconds;
+var intervalId;
+
+
+/*--------------------------------------------------------------------------*/
 const isEmail = value => {
 	const emailRegex = /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 	return emailRegex.test(value)
+}
+
+const startRestartTimer = ()=>{
+	/*step 2: start timer*/
+	intervalId = setInterval(setTime, 1000)
 }
 
 const isMobile = value => {
 	const isMobileRegex = /^0((?:90|91|92|93|99)[0-9]{8})$/
 	return isMobileRegex.test(value)
 }
+const setTime = function () {
 
-var totalSeconds = 0;
+	--totalSeconds;
+	jQuery('#mjkh_seconds').text(pad(totalSeconds % 60));
+	jQuery('#mjkh_minutes').text(pad(parseInt(totalSeconds / 60)));
 
-function setTime() {
-  ++totalSeconds;
-  $('#mjkh_seconds').text(pad(totalSeconds % 60));
-	$('#mjkh_minutes').text(pad(parseInt(totalSeconds / 60)));
+	if (totalSeconds <= 0) {
+		clearInterval(intervalId);
+		totalSeconds = CONFIG_totalSeconds;
 
-	if (totalSeconds / 60 >= 2) {
-		clearInterval(setTime);
-		totalSeconds = 0;
-
-$('#mjkh_timeout').hide()
-$('#mjkh_resend').show()
+		jQuery('.mjkh_timeout').hide()
+		jQuery('#mjkh_resend').show()
 
 
+		jQuery('#mjkh_minutes').text("02")
+		jQuery('#mjkh_seconds').text("30")
 	}
 }
-
 function pad(val) {
 	var valString = val + "";
 	if (valString.length < 2) {
@@ -71,62 +86,74 @@ function pad(val) {
 	}
 }
 
-const fetchRequestOtp = async callback => {
+const showTimerAndResend = ()=>{
+	/* show timer and hide resend */
+	jQuery('.mjkh_timeout').show()
+	jQuery('#mjkh_resend').hide()
+}
 
-	console.log('76')
-if (totalSeconds != 0) {
+
+/*--------------------------------------------------------------------------*/
+/*step 1 : request otp */
+const requestOtpApiCall = async callback => {
+
+	/*prevent request again while counting time*/
+	if (totalSeconds < CONFIG_totalSeconds && totalSeconds > 0) {
 		return;
 	}
 
+
+
+	/*request otp api call*/
 	apiFetch({
 		path: '/wp/v2/users/sendotp', // This would require a custom REST API endpoint or AJAX handler
 		method: 'POST',
 		data: {
+			// mobile and email
 			email: isEmail(emailOrMobile) ? emailOrMobile : null,
 			mobile: isMobile(emailOrMobile) ? emailOrMobile : null
 		}
 	})
 		.then(response => {
-			// Handle successful login
+
+			/*step 1b : request otp response */
+
+			/* disable button to prevent several requests*/
 			jQuery('#mjkh-otp-request-code')
 				.find('input[type="submit"]')
 				.removeAttr('disabled')
 
+			/* successfull */
 			if (response.success) {
-				// Maybe redirect or show success message
-				console.log('otp request successful')
 
+
+				/* if debug is enabled then calling will have content*/
 				if (response.content) {
 					jQuery(' #nds_form_feedback ').html(
 						'<h2>otp request successful</h2><br>' +
-							response.code +
-							'<br/>' +
-							'<h2>content</h2><br>' +
-							response.content +
-							'<br/>' +
-							'<h2>sms</h2><br>' +
-							response.sms +
-							'<br/>'
+						response.code +
+						'<br/>' +
+						'<h2>content</h2><br>' +
+						response.content +
+						'<br/>' +
+						'<h2>sms</h2><br>' +
+						response.sms +
+						'<br/>'
 					)
 
-
-					console.log('112');
-				$('#mjkh_resend').hide()
-				$('#mjkh_timeout').show();
-
-					setInterval(setTime, 1000)
 
 				} else {
 					jQuery(' #nds_form_feedback ').html('<p>' + response.message + '</p>')
 				}
 
-				/*
-				jQuery(' #nds_form_feedback ').html(
-	'<h2>otp request successful</h2><br>' + response.code
-)
- */
-				isOtpSent = true
 
+				/* show timer and hide resend */
+				showTimerAndResend();
+
+				/*step 2: start timer*/
+				startRestartTimer()
+
+				/*step 1c: show and hide staff */
 				callback()
 			} else {
 				error = response.message || 'otp request failed'
@@ -145,7 +172,9 @@ if (totalSeconds != 0) {
 		})
 }
 
-const fetchLogin = async () => {
+/*--------------------------------------------------------------------------*/
+/*step 3 : verify otp and Login */
+const verifyOtpAndLoginApiCall = async () => {
 	apiFetch({
 		path: '/wp/v2/users/login', // This would require a custom REST API endpoint or AJAX handler
 		method: 'POST',
@@ -159,18 +188,17 @@ const fetchLogin = async () => {
 		}
 	})
 		.then(response => {
+
+			/*un necessary*/
 			jQuery('#mjkh-otp-login')
 				.find('input[type="submit"]')
 				.removeAttr('disabled')
+
 			// Handle successful login
 			if (response.success) {
-				// Maybe redirect or show success message
-				console.log('Login successful')
 
+				/*step 3b: show to user and reload*/
 				jQuery('#mjkh-otp-login').html('<p>' + response.message + '</p>')
-
-
-				isLoginSuccessful = true
 
 				window.location.reload()
 			} else {
@@ -192,18 +220,25 @@ const fetchLogin = async () => {
 		})
 }
 
-// Attach the component to a specific block element
+
+function hideResendOtp() {
+	/*hide
+			* ارسال مجدد رمز یکبار مصرف
+			* as soon as it clicked
+			 */
+	jQuery('#mjkh_resend').hide()
+}
+
+/*step 0 : config everything*/
 document.addEventListener('DOMContentLoaded', () => {
 	jQuery(document).ready(function () {
 		'use strict'
-		/**
-		 * The file is enqueued from inc/admin/class-admin.php.
-		 */
-		jQuery('#mjkh-otp-request-code').submit(async function (event) {
+
+
+		/*step 1a: bind request otp*/
+		const requestCodeEventListener = async function (event) {
 			event.preventDefault() // Prevent the default form submit.
 
-			// serialize the form data
-			var ajax_form_data = jQuery('#nds_add_user_meta_ajax_form').serialize()
 
 			emailOrMobile = jQuery('#mjkh-otp-request-code')
 				.find('[name="emailOrMobile"]')
@@ -219,20 +254,32 @@ document.addEventListener('DOMContentLoaded', () => {
 				return
 			}
 
+			/*hide
+			* ارسال مجدد رمز یکبار مصرف
+			* as soon as it clicked
+			 */
+			hideResendOtp()
+
+
 			jQuery('#mjkh-otp-request-code')
 				.find('input[type="submit"]')
 				.attr('disabled', true)
-			await fetchRequestOtp(() => {
+			await requestOtpApiCall(() => {
 				jQuery('#mjkh-otp-request-code').hide()
 				jQuery('#mjkh-otp-login').show()
 			})
-		})
+		}
 
+
+		/* step 1a: bind request otp*/
+		jQuery('#mjkh-otp-request-code').submit(requestCodeEventListener)
+		jQuery('#mjkh_resend').click(requestCodeEventListener)
+
+
+		/*step 3a: bind verify otp and login*/
 		jQuery('#mjkh-otp-login').submit(async function (event) {
 			event.preventDefault() // Prevent the default form submit.
 
-			// serialize the form data
-			var ajax_form_data = jQuery('#nds_add_user_meta_ajax_form').serialize()
 
 			otp = jQuery('#mjkh-otp-login').find('[name="otp"]').val()
 
@@ -250,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				.find('input[type="submit"]')
 				.attr('disabled', true)
 
-			await fetchLogin()
+			await verifyOtpAndLoginApiCall()
 		})
 	})
 })
