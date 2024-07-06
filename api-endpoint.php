@@ -15,6 +15,10 @@ function mjkh_verify_endpoint($request)
 	if ($user) {
 
 		$message = mjkh_get_user_subscriptions_remain($user->ID, $product_id);
+		if(!$message){
+			return new WP_Error('not_found', __('اطلاعات ارسالی معتبر نیست'), array('status' => 404));
+		}
+		
 		// Dummy logic for verification
 		return new WP_REST_Response(array('key' => $key,
 
