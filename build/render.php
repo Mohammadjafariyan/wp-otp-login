@@ -1,3 +1,10 @@
+
+<style>
+	label {
+		text-align: right !important;
+	}
+</style>
+
 <div <?php echo get_block_wrapper_attributes(); ?>>
 
 

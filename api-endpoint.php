@@ -14,12 +14,32 @@ function mjkh_verify_endpoint($request)
 
 	if ($user) {
 
-		$message = mjkh_get_user_subscriptions_remain($user->ID, $product_id);
-	
-		// Dummy logic for verification
-		return new WP_REST_Response(array('key' => $key,
+		$data = mjkh_get_user_subscriptions_remain($user->ID, $product_id);
+		/* array(
+			'total_days'=>$total_days,
+			'weeks'=>$weeks,
+			'remaining_days'=>	$remaining_days,
+			'product'=> $product,
+			'end_date_in_database'=>$end_date,
+			'startDateTimeType'=> $start,
+			'endDateTimeType'=> $end
+		) */
 
-			'message' => $message,
+
+		if (count($data)===0) {
+			return new WP_Error('not_found', __('برای شما هیچ اشتراکی یافت نشد'), array('status' => 404));
+		}
+
+		// if ($data['total_days'] <=0) {
+		// 	return new WP_Error('not_found', __('اشتراک شما به اتمام رسیده است'), array('status' => 404));
+		// }
+
+		
+
+		// Dummy logic for verification
+		return new WP_REST_Response(array(
+			'key' => $key,
+			'subscriptions' => $data,
 			'REMOTE_ADDR' => $_SERVER['REMOTE_ADDR'],
 			'HTTP_REFERER' => $_SERVER['HTTP_REFERER'],
 			'REMOTE_HOST' => $_SERVER['REMOTE_HOST'],
@@ -27,11 +47,13 @@ function mjkh_verify_endpoint($request)
 			'HTTP_USER_AGENT' => $_SERVER['HTTP_USER_AGENT'],
 			'GEOIP_COUNTRY_CODE' => $_SERVER["GEOIP_COUNTRY_CODE"],
 		), 200); // HTTP 200: OK
+
+
 	} else {
 
 
 		//return new WP_REST_Response(array('key' => $key,'message'=>'ایمیل شما نیست'), 50); // HTTP 200: OK
-		return new WP_Error('not_found', __('اطلاعات ارسالی معتبر نیست'), array('status' => 404));
+		return new WP_Error('not_found', __('کاربر یافت نشد'), array('status' => 404));
 		//	return new WP_Error( 'wrong_input', __('اطلاعات ارسالی معتبر نیست'), array( 'status' => 404 ) );
 
 	}
@@ -77,6 +99,8 @@ function mjkh_get_user_subscriptions_remain($user_id, $productId)
 	$subs = YWSBS_Subscription_Helper::get_instance()->get_subscriptions_by_user($user_id);
 	$subscription_status_list = ywsbs_get_status();
 
+
+	$sub_list = array();
 	foreach ($subs as $subscription_post) {
 
 		$subscription_id = is_numeric($subscription_post) ? $subscription_post : $subscription_post->ID;
@@ -118,48 +142,41 @@ function mjkh_get_user_subscriptions_remain($user_id, $productId)
 		// Get the product from the subscription
 		$product = $subscription->get_product();
 
-
-		if ($productId) {
-			if ($productId == $product->get_id()) {
-				return sprintf(
-					$remaining_days > 0 ? 'اشتراک باقیمانده : %d هفته و %d روز '
-						: 'اشتراک باقیمانده : %d هفته ',
-					$weeks,
-					$remaining_days
-				);
-			}
-		} else {
-			if ($remaining_days > 0) {
-				return sprintf(
-					'اشتراک باقیمانده : %d هفته و %d روز برای %s '					,
-					$weeks,
-					$remaining_days,
-					$product->get_name()
-				);
-			} else {
-				return sprintf(
-					'اشتراک باقیمانده : %d هفته برای %s '					,
-					$weeks,
-					$product->get_name()
-				);
-			}
-
-		}
-
-		/*$tempArr= array(
-			'text'=>sprintf(
-				'اشتراک باقیمانده : %d هفته و %d روز ',
+		$message = '';
+		if ($remaining_days > 0) {
+			$message = sprintf(
+				'اشتراک باقیمانده : %d هفته و %d روز  ',
 				$weeks,
 				$remaining_days
-			),
-			"weeks"=>$weeks,
-			"remaining_days"=>$remaining_days,
-			"product_id"=>$product->get_id(),
-			"product_name"=>$product->get_name()
-		);*/
+			);
+		} else {
+			$message = sprintf(
+				'اشتراک باقیمانده : %d هفته   ',
+				$weeks
+			);
+		}
+
+		if ($total_days <=0) {
+			continue;
+		}
+
+		$tmp= array(
+			'total_days'=>$total_days,
+			'weeks'=>$weeks,
+			'remaining_days'=>	$remaining_days,
+			'product'=> $product->get_name(),
+			'product_id' =>$product->get_id(),
+			'end_date_in_database'=>$end_date,
+			'startDateTimeType'=> $start,
+			'endDateTimeType'=> $end,
+			'message' =>$message
+		);
+
+		array_push($sub_list,$tmp);
+
 
 	}
-	return  null;
+	return  $sub_list;
 
 }
 
@@ -171,7 +188,7 @@ function mjkh_findUser($usernameOrEmail)
 
 	// Check if the email already exists
 	if (email_exists($usernameOrEmail)) {
-		return get_user_by_email($usernameOrEmail);
+		return get_user_by('email', $usernameOrEmail);
 	}
 
 	return null;
