@@ -1056,7 +1056,7 @@ function remove_required_email_address($required_fields)
 	if (!isset($_POST['change_email_phone'])) {
 
 		unset($required_fields['account_email']);
-	}else{
+	} else {
 
 		unset($required_fields['account_first_name']);
 		unset($required_fields['account_last_name']);
@@ -1071,10 +1071,10 @@ add_action('woocommerce_save_account_details_errors', 'billing_mobile_phone_fiel
 function billing_mobile_phone_field_validation($args)
 {
 
-// echo '<pre>';
-// 	print_r($_POST);
-// 	print_r($_GET);
-// 	echo '</pre>';
+	// echo '<pre>';
+	// 	print_r($_POST);
+	// 	print_r($_GET);
+	// 	echo '</pre>';
 	if (isset($_POST['change_email_phone'])) {
 		if (isset($_POST['billing_mobile_phone']) && empty($_POST['billing_mobile_phone']))
 			$args->add('error', __('لطفا شماره موبایل خود را وارد نمایید', 'woocommerce'), '');
@@ -1196,6 +1196,7 @@ function add_verification_form()
 				<input type="text" name="code" id="code" required>
 			</p>
 			<input class="woocommerce-Button button" type="submit" name="email_verify_code" value="تایید">
+			<input class="woocommerce-Button button" type="submit" name="email_verify_cancel" value="لغو">
 		</form>
 
 	<?php
@@ -1210,6 +1211,7 @@ function add_verification_form()
 				<input type="text" name="code" id="code" required>
 			</p>
 			<input class="woocommerce-Button button" type="submit" name="verification_code_phone" value="تایید">
+			<input class="woocommerce-Button button" type="submit" name="phone_verify_cancel" value="لغو">
 		</form>
 <?php
 	}
@@ -1222,6 +1224,21 @@ add_action('template_redirect', 'handle_verification_submission');
 function handle_verification_submission()
 {
 
+	if (isset($_POST['phone_verify_cancel']) && isset($_POST['code'])) {
+
+		$user_id = get_current_user_id();
+
+		delete_user_meta($user_id, 'phone_verification_code');
+		delete_user_meta($user_id, 'new_phone');
+	}
+
+
+	if (isset($_POST['email_verify_cancel']) && isset($_POST['code'])) {
+		$user_id = get_current_user_id();
+
+		delete_user_meta($user_id, 'email_verification_code');
+		delete_user_meta($user_id, 'new_email');
+	}
 	// echo '<pre>';
 	// print_r($_POST);
 	// print_r($_GET);
