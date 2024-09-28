@@ -1195,8 +1195,12 @@ function add_verification_form()
 				<label for="verification_code_email">رمز پویای ارسال شده به ایمیل را وارد کنید</label>
 				<input type="text" name="code" id="code" required>
 			</p>
-			<input class="woocommerce-Button button" type="submit" name="email_verify_code" value="تایید">
-			<input class="woocommerce-Button button" type="submit" name="email_verify_cancel" value="لغو">
+			<div style="display: flex;">
+				<input class="woocommerce-Button button" type="submit" name="email_verify_code" value="تایید">
+
+				<input onclick="jQuery('[name=code]').val('لغو')" style="background-image: linear-gradient(to right, #e52d27 0%, #4a0c0c 51%, #e52d27 100%) !important;" class="woocommerce-Button button" type="submit" name="email_verify_cancel" value="لغو">
+
+			</div>
 		</form>
 
 	<?php
@@ -1210,8 +1214,10 @@ function add_verification_form()
 				<label for="verification_code_phone">رمز پویای پیامک شده را وارد کنید</label>
 				<input type="text" name="code" id="code" required>
 			</p>
-			<input class="woocommerce-Button button" type="submit" name="verification_code_phone" value="تایید">
-			<input class="woocommerce-Button button" type="submit" name="phone_verify_cancel" value="لغو">
+			<div style="display: flex;">
+				<input class="woocommerce-Button button" type="submit" name="verification_code_phone" value="تایید">
+				<input onclick="jQuery('[name=code]').val('لغو')" style="background-image: linear-gradient(to right, #e52d27 0%, #4a0c0c 51%, #e52d27 100%) !important;" class="woocommerce-Button button" type="submit" name="phone_verify_cancel" value="لغو">
+			</div>
 		</form>
 <?php
 	}
